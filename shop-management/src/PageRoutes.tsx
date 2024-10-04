@@ -7,6 +7,7 @@ import EditCategoryWrapper from "./Category/Edit/EditCategoryWrapper";
 import AddCustomerWrapper from "./Customer/Add/AddCustomerWrapper";
 
 import CustomerListingWrapper from "./Customer/List/CustomerListingWrapper";
+import AddProductWrapper from "./Product/AddProduct/AddProductWrapper";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +41,13 @@ const router = createBrowserRouter([
   {
     path:`/editCategory/:id`,
     element:<EditCategoryWrapper/>
-  }
+  },
+
+  // Product Routes
+  {
+    path: "/addProduct",
+    element: <AddProductWrapper />,
+  },
 ]);
 
 export default router;

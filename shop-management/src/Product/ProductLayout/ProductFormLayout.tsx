@@ -1,81 +1,100 @@
-import React from "react";
+import React from 'react'
 
-interface customerFormProps {
-  formikProps : any
-  buttonName: string
-}
-const CustomerFormLayout: React.FC<customerFormProps> = ( {formikProps,buttonName} ) => {
-  const { values, handleChange, touched, errors, handleBlur, } = formikProps;
+interface productFormProps {
+    formikProps : any
+    buttonName: string
+  }
+
+const ProductFormLayout: React.FC<productFormProps> = ( {formikProps,buttonName} )  => {
+    const { values, handleChange, touched, errors, handleBlur, } = formikProps;
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-400">
       <div className="w-full max-w-lg bg-white shadow-md rounded-lg p-8">
-        {/* Customer Form */}
+        {/* Product Form */}
         <h2 className="text-2xl font-bold mb-6 text-gray-700"></h2>
 
-        {/* Customer Name */}
+        {/* Product Code */}
         <div className="mb-4">
           <label className="block text-gray-700 font-semibold">
-            Customer Name
+            Product Code 
           </label>
           <input
             type="text"
-            name="name"
-              value={values.name}
+            name="produtCode"
+              value={values.produtCode }
               onChange={handleChange}
               onBlur={handleBlur}
             className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring focus:border-blue-300"
-            placeholder=" Enter customer name"
+            placeholder=" Enter product code"
           />
-          {touched.name && errors.name && (
-              <div className="text-red-500">{errors.name}</div>
+          {touched.productCode && errors.productCode && (
+              <div className="text-red-500">{errors.productCode}</div>
             ) }
         </div>
 
-        {/* Mobile Number */}
+        {/* Product Name */}
         <div className="mb-4">
-          <label className="block text-gray-700 font-semibold">Mobile</label>
+          <label className="block text-gray-700 font-semibold">Product Name</label>
           <input
             type="text"
-            name="mobile"
+            name="productName"
               value={values.mobile}
               onChange={handleChange}
               onBlur={handleBlur}
             className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring focus:border-blue-300"
-            placeholder="Enter mobile no."
+            placeholder="Enter product name"
           />
           {touched.mobile && errors.mobile && (
               <div className="text-red-500">{errors.mobile}</div>
             )}                                         
         </div>
 
-        {/* Email */}
+        {/* Cost Price */}
         <div className="mb-4">
-          <label className="block text-gray-700 font-semibold">Email</label>
+          <label className="block text-gray-700 font-semibold">Cost Price</label>
           <input
             type="text"
-            name="email"
+            name="costPrice"
               value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
             className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring focus:border-blue-300"
-            placeholder="Enter email"
+            placeholder="Enter cost price"
           />
           {touched.email && errors.email && (
               <div className="text-red-500">{errors.email}</div>
             )}
         </div>
 
-        {/* City */}
+        {/* MRP */}
         <div className="mb-4">
-          <label className="block text-gray-700 font-semibold">City</label>
+          <label className="block text-gray-700 font-semibold">MRP</label>
           <input
             type="text"
-            name="city"
+            name="MRP"
               value={values.city}
               onChange={handleChange}
               onBlur={handleBlur}
             className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring focus:border-blue-300"
-            placeholder="Enter city"
+            placeholder="Enter MRP"
+          />
+          {touched.city && errors.city && (
+              <div className="text-red-500">{errors.city}</div>
+            )}
+        </div>
+
+        
+        {/* Selling Price */}
+        <div className="mb-4">
+          <label className="block text-gray-700 font-semibold">Selling Price</label>
+          <input
+            type="text"
+            name="sellingPrice"
+              value={values.city}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            className="w-full px-3 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring focus:border-blue-300"
+            placeholder="Enter selling price"
           />
           {touched.city && errors.city && (
               <div className="text-red-500">{errors.city}</div>
@@ -95,4 +114,5 @@ const CustomerFormLayout: React.FC<customerFormProps> = ( {formikProps,buttonNam
   );
 };
 
-export default CustomerFormLayout;
+  
+export default ProductFormLayout
