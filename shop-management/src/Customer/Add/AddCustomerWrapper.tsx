@@ -39,8 +39,8 @@ const AddCustomerWrapper: React.FC = () => {
 
   const validationSchema = object({
     name: string().required("Name is required"),
-    email: string().email("Invalid email format").required("email is required"),
-    mobile: string()
+    email: string().email("Invalid email format").required("Email is required"),
+    mobile: string().required("Mobile is required")
       .min(10, "Mobile number must be atleat 10 digits")
       .max(10)
       .required(),

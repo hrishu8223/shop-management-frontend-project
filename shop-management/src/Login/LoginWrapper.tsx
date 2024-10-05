@@ -24,7 +24,7 @@ const LoginWrapper: React.FC = () => {
         toast.success(res.data?.msg);
         setSubmitting(false);
         resetForm()
-        navigate("/");
+        navigate("/listingCustomer");
       }
       console.log(res);
     });

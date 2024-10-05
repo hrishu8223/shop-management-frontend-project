@@ -1,64 +1,72 @@
 import { Form, useNavigate } from "react-router-dom";
-import { useProductAddMutation } from "../../Service/productslice";
 import { object, string } from "yup";
 import { Formik } from "formik";
 import ProductFormLayout from "../ProductLayout/ProductFormLayout";
+import { toast } from "react-toastify";
+
+import { useCreateProductMutation } from "../../Service/productslice";
+import { useGetCategoryQuery } from "../../Service/categoryslice";
 
 export type ProductFormValues = {
-    produtCode: String;
-    productName : String;
-    costPrice: String;  
-    MRP: String;
-    sellingPrice: String;
+  img: String;
+  produtCode: String;
+  productName: String;
+  costPrice: String;
+  MRP: String;
+  sellingPrice: String;
+  categoryId:any
+};
 
-
+const AddProductWrapper: React.FC = () => {
+  const { data } = useGetCategoryQuery();
+  console.log(data);
+  const [createProduct] = useCreateProductMutation();
+  const initialValues: ProductFormValues = {
+    img: "",
+    produtCode: "",
+    productName: "",
+    costPrice: "",
+    MRP: "",
+    sellingPrice: "",
+    categoryId: "",
   };
-  
-  const AddProductWrapper: React.FC = () => {
-    const [productAdd] = useProductAddMutation();
-    const initialValues: ProductFormValues = {
-      produtCode: "",
-      productName: "",
-      costPrice: "",
-      MRP: "",
-      sellingPrice: "",
-      
-    };
-    // const navigate = useNavigate()
-  
-    const handleSubmit = (values: ProductFormValues) => {
-      console.log(values);
-      productAdd(values).then((res:any) => {
-        if (res.data.msg) {
-          productAdd.success(res.data.msg);
-        //   navigate(`/listingCustomer`)
-        }
-        console.log(res);
-      });
-    };
-  
-    const validationSchema = object({
-      name: string().required("Name is required"),
-      email: string().email("Invalid email format").required("email is required"),
-      mobile: string()
-        .min(10, "Mobile number must be atleat 10 digits")
-        .max(10)
-        .required(),
-  
-      city: string().required("City is required"),
+  const navigate = useNavigate();
+
+  const handleSubmit = (values: ProductFormValues) => {
+    alert('LHHHHHJ')
+    console.log(values);
+    createProduct(values).then((res: any) => {
+      if (res.data.msg) {
+        toast.success(res.data.msg);
+        navigate(`/listingProduct`);
+      }
+      console.log(res);
     });
-    return (
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ handleSubmit, ...formikProps }) => (
-          <Form onSubmit={handleSubmit}>
-            <ProductFormLayout buttonName={"Add"} formikProps={formikProps} />
-          </Form>
-        )}
-      </Formik>
-    );
   };
-  export default AddProductWrapper
+
+  const validationSchema = object({
+    produtCode: string().required("product code is required"),
+    productName: string().required("product name is required"),
+    costPrice: string().required("cost price is required"),
+    MRP: string().required("MRP is required"),
+    sellingPrice: string().required("selling price is required"),
+  });
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
+    >
+      {({ handleSubmit,...formikProps }) => (
+        <Form >
+          <ProductFormLayout
+            data={data}
+            buttonName={"Add"}
+            formikProps={formikProps}
+          />
+        </Form>
+      )}
+    </Formik>
+  );
+};
+export default AddProductWrapper;

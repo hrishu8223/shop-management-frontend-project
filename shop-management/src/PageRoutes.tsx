@@ -8,6 +8,8 @@ import AddCustomerWrapper from "./Customer/Add/AddCustomerWrapper";
 
 import CustomerListingWrapper from "./Customer/List/CustomerListingWrapper";
 import AddProductWrapper from "./Product/AddProduct/AddProductWrapper";
+import ListingproductWrapper from "./Product/ListingProduct/ListingproductWrapper";
+import EditProductWrapper from "./Product/EditProudct/EditProductWrapper";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +50,15 @@ const router = createBrowserRouter([
     path: "/addProduct",
     element: <AddProductWrapper />,
   },
+  {
+    path: "/listingProduct",
+    element: <ListingproductWrapper />,
+  },
+  {
+    path: "/editProduct",
+    element: <EditProductWrapper />,
+  },
+
 ]);
 
 export default router;

@@ -2,20 +2,20 @@ import { apislice } from "./apislice";
 
 const productSlice = apislice.injectEndpoints({
     endpoints: (builder:any) => ({
-        productAdd : builder.mutation({
+      createProduct : builder.mutation({
         query: (data: any) => ({
-          url: "/create",
-          method: "",
+          url: "/product/create",
+          method: "POST",
           body: data,
         }),
       }),
-//         getCategory: builder.query({
-//           query: (data: any) => ({
-//           url: "/category/getAllCategory",
-//           method: "GET",
-//           body: data,
-//         }) 
-//       }),
+      ListingProduct : builder.query({
+          query: (data: any) => ({
+          url: "/product/getAllProducts",
+          method: "GET",
+          body: data,
+        }) 
+      }),
 //       updateCategory: builder.mutation({
 //         query: ({id,data}) => ({
 //         url: `/category/update/${id}`,
@@ -23,14 +23,14 @@ const productSlice = apislice.injectEndpoints({
 //         body:data
 //     }),
 //   }),
-//   deleteCategory: builder.mutation({
-//     query: (data: any) => ({
-//     url: "/category/delete/:id",
-//     method: "DELETE",
-//     body: data,
-//   }), 
-//   }),
+deleteProduct: builder.mutation({
+    query: (data: any) => ({
+    url: "/product/delete/:id",
+    method: "DELETE",
+    body: data,
+  }), 
+  }),
   }),
 })
 
-export const {useProductAddMutation} = productSlice
+export const {useCreateProductMutation, useListingProductQuery, useDeleteProductMutation} = productSlice
